@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: worker
+  template:
+    metadata:
+      labels:
+        component: worker
+    spec:
+      containers:
+        - name: worker
+          image: teenamathew/complex_worker
+     environment:
+        - REDIS_HOST=redis
+        - REDIS_PORT=6379
+
+# TODO: Add Redis Environment Variables
